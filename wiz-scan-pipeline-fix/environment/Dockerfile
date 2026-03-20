@@ -2,15 +2,17 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
-# Install required tools
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    jq \
     sed \
+    bash \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip install pytest
+RUN pip install pytest pyyaml
 
-# Copy all environment files to /app/
 COPY . /app/
 
-# Keep container running for agent interaction
-ENTRYPOINT ["tail", "-f", "/dev/null"]
+RUN chmod +x /app/scripts/*.sh 2>/dev/null || true
+
+CMD ["sleep", "infinity"]

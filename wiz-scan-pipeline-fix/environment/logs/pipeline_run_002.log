@@ -1,0 +1,17 @@
+[2024-03-15 14:30:01] INFO: Pipeline triggered by manual dispatch
+[2024-03-15 14:30:02] INFO: Checking out repository...
+[2024-03-15 14:30:04] INFO: Repository checkout complete
+[2024-03-15 14:30:05] INFO: Loading environment configuration
+[2024-03-15 14:30:05] WARNING: Some environment variables may not be set correctly
+[2024-03-15 14:30:06] INFO: Configuration loaded
+[2024-03-15 14:30:07] INFO: Setting up Wiz CLI...
+[2024-03-15 14:30:08] INFO: Wiz CLI setup complete
+[2024-03-15 14:30:09] INFO: Attempting authentication...
+[2024-03-15 14:30:10] ERROR: Authentication failed - check credentials
+[2024-03-15 14:30:10] INFO: Continuing with scan attempt...
+[2024-03-15 14:30:11] INFO: Scan target: ./build
+[2024-03-15 14:30:12] WARNING: Target directory appears to be empty or missing
+[2024-03-15 14:30:13] INFO: Scan command executed
+[2024-03-15 14:30:14] INFO: Scan process completed
+[2024-03-15 14:30:15] INFO: Pipeline finished with status: SUCCESS
+[2024-03-15 14:30:15] INFO: Note: Review scan results for completeness

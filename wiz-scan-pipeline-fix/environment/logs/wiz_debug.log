@@ -1,0 +1,15 @@
+[2024-03-15 14:30:09] DEBUG: Wiz CLI version check
+[2024-03-15 14:30:09] DEBUG: Looking for wiz binary...
+[2024-03-15 14:30:09] DEBUG: Checked /usr/bin/wiz - not found
+[2024-03-15 14:30:09] DEBUG: Checked /usr/local/bin/wiz - not found
+[2024-03-15 14:30:09] DEBUG: Checked /tmp/wizcli - found
+[2024-03-15 14:30:10] DEBUG: Executing: /tmp/wizcli auth --id [REDACTED] --secret [REDACTED]
+[2024-03-15 14:30:10] DEBUG: Auth response: {"error": "invalid_client", "message": "Client authentication failed"}
+[2024-03-15 14:30:10] DEBUG: Note: Newtonsoft.Json serialization warning - non-blocking
+[2024-03-15 14:30:11] DEBUG: Executing scan command...
+[2024-03-15 14:30:11] DEBUG: Command: wiz scan repo ./build --format json --output scan-results.json
+[2024-03-15 14:30:12] DEBUG: Scan stderr: Error: Invalid command 'scan repo'. Did you mean 'wiz dir scan'?
+[2024-03-15 14:30:12] DEBUG: Scan exit code: 1
+[2024-03-15 14:30:12] DEBUG: Script exit code overridden to 0
+[2024-03-15 14:30:13] DEBUG: Results file check: scan-results.json not found
+[2024-03-15 14:30:13] DEBUG: Pipeline reporting success despite scan issues

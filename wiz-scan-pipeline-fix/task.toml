@@ -1,6 +1,6 @@
 [task]
 name = "wiz-scan-pipeline-fix"
-description = "Fix a .NET application deployment pipeline blocked by Wiz security scan findings"
+description = "Debug and fix a broken Wiz security scan CI/CD pipeline"
 version = "1.0.0"
 
 [environment]

@@ -1,0 +1,24 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.13, pytest-9.0.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /app
+collecting ... collected 16 items
+
+tests/test_outputs.py::TestEnvironmentVariables::test_credentials_file_exists PASSED [  6%]
+tests/test_outputs.py::TestEnvironmentVariables::test_wiz_client_id_variable_name PASSED [ 12%]
+tests/test_outputs.py::TestEnvironmentVariables::test_wiz_client_secret_variable_name PASSED [ 18%]
+tests/test_outputs.py::TestEnvironmentVariables::test_scan_path_points_to_src PASSED [ 25%]
+tests/test_outputs.py::TestWizCLI::test_wiz_cli_in_path PASSED           [ 31%]
+tests/test_outputs.py::TestWizCLI::test_wiz_cli_executable PASSED        [ 37%]
+tests/test_outputs.py::TestWizCLI::test_wiz_cli_responds_to_help PASSED  [ 43%]
+tests/test_outputs.py::TestScanCommand::test_scan_script_exists PASSED   [ 50%]
+tests/test_outputs.py::TestScanCommand::test_scan_script_uses_correct_command PASSED [ 56%]
+tests/test_outputs.py::TestScanCommand::test_scan_script_uses_correct_env_vars PASSED [ 62%]
+tests/test_outputs.py::TestPipelineConfiguration::test_pipeline_no_false_success PASSED [ 68%]
+tests/test_outputs.py::TestPipelineConfiguration::test_scan_script_propagates_errors PASSED [ 75%]
+tests/test_outputs.py::TestScanExecution::test_scan_target_directory_exists PASSED [ 81%]
+tests/test_outputs.py::TestScanExecution::test_scan_produces_results_file PASSED [ 87%]
+tests/test_outputs.py::TestScanExecution::test_scan_results_contain_findings PASSED [ 93%]
+tests/test_outputs.py::TestAuthentication::test_auth_uses_correct_credentials PASSED [100%]
+
+============================== 16 passed in 0.03s ==============================

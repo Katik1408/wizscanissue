@@ -1,0 +1,27 @@
+{
+    "id": "4dd46286-a2d3-4efd-b80d-c6a5180edd0e",
+    "started_at": "2026-03-20T18:02:47.108567",
+    "finished_at": "2026-03-20T18:02:54.073852",
+    "n_total_trials": 1,
+    "stats": {
+        "n_trials": 1,
+        "n_errors": 1,
+        "evals": {
+            "oracle__adhoc": {
+                "n_trials": 0,
+                "n_errors": 1,
+                "metrics": [
+                    {
+                        "mean": 0.0
+                    }
+                ],
+                "reward_stats": {},
+                "exception_stats": {
+                    "RewardFileNotFoundError": [
+                        "wiz-scan-pipeline-fix__QCUMuwP"
+                    ]
+                }
+            }
+        }
+    }
+}

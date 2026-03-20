@@ -1,0 +1,38 @@
+name: Security Scan Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  WIZ_CLIENT: ${{ secrets.WIZ_CLIENT_ID }}
+  WIZ_SECRET: ${{ secrets.WIZ_CLIENT_SECRET }}
+  SCAN_PATH: "./build"
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Wiz CLI
+        run: |
+          curl -o /tmp/wizcli https://wizcli.app.wiz.io/latest/wizcli-linux-amd64
+          chmod +x /tmp/wizcli
+
+      - name: Authenticate with Wiz
+        run: |
+          /tmp/wizcli auth --id $WIZ_CLIENT --secret $WIZ_SECRET || true
+
+      - name: Run Security Scan
+        run: |
+          ./scripts/wiz_scan.sh || true
+
+      - name: Upload Results
+        if: always()
+        run: |
+          echo "Scan completed"
+          cat scan-results.json 2>/dev/null || echo "No results file"

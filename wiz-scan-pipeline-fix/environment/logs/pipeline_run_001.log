@@ -1,0 +1,20 @@
+[2024-03-15 09:00:01] INFO: Pipeline triggered by push to main branch
+[2024-03-15 09:00:02] INFO: Checking out repository...
+[2024-03-15 09:00:05] INFO: Repository checkout complete
+[2024-03-15 09:00:06] INFO: Loading environment configuration
+[2024-03-15 09:00:06] DEBUG: Found credentials.env file
+[2024-03-15 09:00:07] INFO: Configuration loaded successfully
+[2024-03-15 09:00:08] INFO: Setting up Wiz CLI...
+[2024-03-15 09:00:10] INFO: Downloading Wiz CLI from official source
+[2024-03-15 09:00:15] INFO: Wiz CLI downloaded to /tmp/wizcli
+[2024-03-15 09:00:16] INFO: CLI permissions set
+[2024-03-15 09:00:17] INFO: Attempting authentication...
+[2024-03-15 09:00:18] WARNING: Authentication response received
+[2024-03-15 09:00:19] INFO: Proceeding with scan...
+[2024-03-15 09:00:20] INFO: Scan target: ./build
+[2024-03-15 09:00:21] INFO: Initializing scan process...
+[2024-03-15 09:00:22] DEBUG: Scan command executed
+[2024-03-15 09:00:23] INFO: Scan process completed
+[2024-03-15 09:00:24] INFO: Checking for results file...
+[2024-03-15 09:00:25] INFO: Pipeline finished with status: SUCCESS
+[2024-03-15 09:00:25] INFO: Total execution time: 24 seconds

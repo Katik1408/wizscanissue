@@ -1,41 +1,33 @@
-# Fix Deployment Pipeline Blocked by Security Scan
+# Security Scan Pipeline Debug
 
-## Background
+## Context
 
-You are a DevOps engineer at a company that uses Wiz for container security scanning. The CI/CD pipeline for a .NET web application has been blocked because the security scan detected critical and high-severity vulnerabilities.
+Your organization uses Wiz for container security scanning as part of the CI/CD pipeline. Recently, the security scan pipeline has been experiencing issues - scans either fail silently, produce incomplete results, or report success when they shouldn't.
 
-The deployment has been halted and the team cannot release the latest features until all blocking security findings are resolved.
+## Problem
+
+The DevOps team has reported that the security scan pipeline is not functioning correctly. Deployments are going through without proper security validation, which is a compliance violation. The pipeline appears to complete successfully, but security findings are not being captured properly.
 
 ## Your Task
 
-The application is located in `/app/`. The security scan report is available at `/app/scan-report.json`.
+Debug and fix the security scan pipeline so that:
+1. The scan actually executes against the correct target
+2. Authentication with the Wiz service works properly
+3. Scan results are captured and reported accurately
+4. The pipeline fails appropriately when security issues are found
 
-Your goal is to fix all **CRITICAL** and **HIGH** severity findings so the deployment can proceed. The scan must pass with no CRITICAL or HIGH severity issues remaining.
+## Available Files
 
-**Important Notes:**
-- Review the scan report carefully to understand what needs to be fixed
-- The application must still build and run correctly after your fixes
-- Do not modify the test files or scan verification logic
-- Some log files in `/app/logs/` may contain useful debugging information
-- Focus on the security issues, not warnings about image size or deprecated APIs
-
-## Files You May Need to Modify
-
-- `/app/src/SecureWebApp/Dockerfile`
-- `/app/src/SecureWebApp/SecureWebApp.csproj`
-- `/app/src/SecureWebApp/appsettings.json`
-- Other files as needed based on your analysis
+- `pipeline.yml` - CI/CD pipeline configuration
+- `scripts/wiz_scan.sh` - Security scan execution script
+- `config/` - Configuration files
+- `logs/` - Pipeline execution logs
+- `src/` - Application source code to be scanned
 
 ## Success Criteria
 
-1. All CRITICAL severity findings are resolved
-2. All HIGH severity findings are resolved  
-3. The Docker image builds successfully
-4. The application starts without errors
-
-## Hints
-
-- Read the scan report thoroughly before making changes
-- Security fixes sometimes require updating multiple related components
-- Be careful with dependency versions - some packages have interdependencies
-- Removing secrets from config files may require providing alternative configuration methods
+The pipeline should:
+- Execute the Wiz scan successfully
+- Scan the correct application directory
+- Report actual security findings
+- Fail the pipeline if critical issues are found
