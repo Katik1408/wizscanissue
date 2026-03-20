@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Vulnerable version - CVE-2024-30105 in System.Text.Json 6.0.0 -->
+    <PackageReference Include="System.Text.Json" Version="6.0.0" />
+    
+    <!-- This package depends on System.Text.Json >= 6.0.0 -->
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
+    
+    <!-- Red herring - deprecated but not a security issue -->
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    
+    <!-- Azure SDK that has transitive dependency on System.Text.Json -->
+    <PackageReference Include="Azure.Identity" Version="1.6.0" />
+  </ItemGroup>
+
+</Project>

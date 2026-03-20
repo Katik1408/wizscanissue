@@ -1,0 +1,19 @@
+[2024-03-15 14:25:01] INFO: Starting CI/CD pipeline for SecureWebApp
+[2024-03-15 14:25:01] INFO: Build triggered by commit abc123def on branch main
+[2024-03-15 14:25:02] INFO: Pulling base image mcr.microsoft.com/dotnet/sdk:6.0
+[2024-03-15 14:25:15] INFO: Base image pulled successfully
+[2024-03-15 14:25:16] INFO: Running dotnet restore...
+[2024-03-15 14:25:32] INFO: Restore completed successfully
+[2024-03-15 14:25:33] INFO: Running dotnet build...
+[2024-03-15 14:25:58] INFO: Build succeeded. 0 Warnings. 0 Errors.
+[2024-03-15 14:25:59] INFO: Running dotnet publish...
+[2024-03-15 14:26:12] INFO: Publish completed successfully
+[2024-03-15 14:26:13] INFO: Building Docker image securewebapp:latest
+[2024-03-15 14:26:45] INFO: Docker image built successfully
+[2024-03-15 14:26:46] WARNING: Image size exceeds recommended limit (847MB > 500MB)
+[2024-03-15 14:26:47] INFO: Starting Wiz security scan...
+[2024-03-15 14:28:15] INFO: Scan completed. Analyzing results...
+[2024-03-15 14:28:16] ERROR: Security scan FAILED - blocking issues detected
+[2024-03-15 14:28:16] ERROR: Pipeline halted. See scan-report.json for details.
+[2024-03-15 14:28:17] INFO: Notifying team via Slack...
+[2024-03-15 14:28:18] INFO: Pipeline status: BLOCKED

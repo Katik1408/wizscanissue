@@ -1,0 +1,13 @@
+[task]
+name = "wiz-scan-pipeline-fix"
+description = "Fix a .NET application deployment pipeline blocked by Wiz security scan findings"
+version = "1.0.0"
+
+[environment]
+dockerfile = "environment/Dockerfile"
+
+[environment.runtime]
+python = "3.12"
+
+[evaluation]
+test_file = "tests/test_outputs.py"
