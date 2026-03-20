@@ -1,0 +1,58 @@
+Trial wiz-scan-pipeline-fix__RS2AHTg failed: Docker compose command failed for environment wiz-scan-pipeline-fix. Command: docker compose -p wiz-scan-pipeline-fix__rs2ahtg --project-directory /Users/admin/Downloads/bespokehometest_wiz/wizscanissue/wiz-scan-pipeline-fix/environment -f /Users/admin/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/admin/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image hb__wiz-scan-pipeline-fix Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 658B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 376B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:3.12-slim
+#3 DONE 0.4s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 465B done
+#5 DONE 0.0s
+
+#6 [1/5] FROM docker.io/library/python:3.12-slim@sha256:3d5ed973e45820f5ba5e46bd065bd88b3a504ff0724d85980dcd05eab361fcf4
+#6 resolve docker.io/library/python:3.12-slim@sha256:3d5ed973e45820f5ba5e46bd065bd88b3a504ff0724d85980dcd05eab361fcf4 done
+#6 DONE 0.0s
+
+#7 [2/5] WORKDIR /app
+#7 CACHED
+
+#8 [3/5] RUN apt-get update && apt-get install -y --no-install-recommends     sed     && rm -rf /var/lib/apt/lists/*
+#8 CACHED
+
+#9 [4/5] RUN pip install pytest
+#9 CACHED
+
+#10 [5/5] COPY . /app/
+#10 CACHED
+
+#11 exporting to image
+#11 exporting layers done
+#11 exporting manifest sha256:8c53ef9fdd2d5527bc92f82382b199a4a3c61508e3215cd624010bb221ddcb85 done
+#11 exporting config sha256:048f5111964d968b9277667940927d951a2b04c182c22a9d2dcbbfd7b3e48863 done
+#11 exporting attestation manifest sha256:9bbbde150fa90fe03c4a59b134c4a0a76fb920b54fc3c88c7cfed12bc2c2995e done
+#11 exporting manifest list sha256:7c68223e5f37bb60d0f095d08e82518371997333f4a12ae212e1c182f40f546d done
+#11 naming to docker.io/library/hb__wiz-scan-pipeline-fix:latest done
+#11 unpacking to docker.io/library/hb__wiz-scan-pipeline-fix:latest done
+#11 DONE 0.0s
+
+#12 resolving provenance for metadata file
+#12 DONE 0.0s
+ Image hb__wiz-scan-pipeline-fix Built 
+ Network wiz-scan-pipeline-fix__rs2ahtg_default Creating 
+ Network wiz-scan-pipeline-fix__rs2ahtg_default Created 
+ Container wiz-scan-pipeline-fix__rs2ahtg-main-1 Creating 
+ Container wiz-scan-pipeline-fix__rs2ahtg-main-1 Created 
+ Container wiz-scan-pipeline-fix__rs2ahtg-main-1 Starting 
+ Container wiz-scan-pipeline-fix__rs2ahtg-main-1 Started 
+ Container wiz-scan-pipeline-fix__rs2ahtg-main-1 Waiting 
+container wiz-scan-pipeline-fix__rs2ahtg-main-1 exited (1)
+. Stderr: None. 

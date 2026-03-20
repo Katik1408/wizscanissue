@@ -1,0 +1,95 @@
+Traceback (most recent call last):
+  File "/Users/admin/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/trial/trial.py", line 479, in run
+    await self._setup_environment()
+  File "/Users/admin/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/trial/trial.py", line 212, in _setup_environment
+    await self._start_environment_with_retry()
+  File "/Users/admin/.local/share/uv/tools/harbor/lib/python3.12/site-packages/tenacity/asyncio/__init__.py", line 193, in async_wrapped
+    return await copy(fn, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/.local/share/uv/tools/harbor/lib/python3.12/site-packages/tenacity/asyncio/__init__.py", line 112, in __call__
+    do = await self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/.local/share/uv/tools/harbor/lib/python3.12/site-packages/tenacity/asyncio/__init__.py", line 157, in iter
+    result = await action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/.local/share/uv/tools/harbor/lib/python3.12/site-packages/tenacity/_utils.py", line 111, in inner
+    return call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/.local/share/uv/tools/harbor/lib/python3.12/site-packages/tenacity/__init__.py", line 393, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/Users/admin/.local/share/uv/tools/harbor/lib/python3.12/site-packages/tenacity/asyncio/__init__.py", line 116, in __call__
+    result = await fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/admin/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/trial/trial.py", line 224, in _start_environment_with_retry
+    await asyncio.wait_for(
+  File "/Users/admin/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/admin/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/environments/docker/docker.py", line 246, in start
+    await self._run_docker_compose_command(["up", "--detach", "--wait"])
+  File "/Users/admin/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/environments/docker/docker.py", line 219, in _run_docker_compose_command
+    raise RuntimeError(
+RuntimeError: Docker compose command failed for environment wiz-scan-pipeline-fix. Command: docker compose -p wiz-scan-pipeline-fix__dk72jsx --project-directory /Users/admin/Downloads/bespokehometest_wiz/wizscanissue/wiz-scan-pipeline-fix/environment -f /Users/admin/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/admin/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml up --detach --wait. Return code: 1. Stdout:  Image hb__wiz-scan-pipeline-fix Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 658B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 376B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:3.12-slim
+#3 DONE 1.1s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 465B done
+#5 DONE 0.0s
+
+#6 [1/5] FROM docker.io/library/python:3.12-slim@sha256:3d5ed973e45820f5ba5e46bd065bd88b3a504ff0724d85980dcd05eab361fcf4
+#6 resolve docker.io/library/python:3.12-slim@sha256:3d5ed973e45820f5ba5e46bd065bd88b3a504ff0724d85980dcd05eab361fcf4 done
+#6 DONE 0.0s
+
+#7 [4/5] RUN pip install pytest
+#7 CACHED
+
+#8 [2/5] WORKDIR /app
+#8 CACHED
+
+#9 [3/5] RUN apt-get update && apt-get install -y --no-install-recommends     sed     && rm -rf /var/lib/apt/lists/*
+#9 CACHED
+
+#10 [5/5] COPY . /app/
+#10 CACHED
+
+#11 exporting to image
+#11 exporting layers done
+#11 exporting manifest sha256:e74dfe08513c0ff3ee50ee96c898884a626a1c6f9d20810afaf94a6c0ef7b113 done
+#11 exporting config sha256:8dbc1cdb4360c62e76cf11da4773832add13e1c46df5822d0b721c298859999c done
+#11 exporting attestation manifest sha256:bb62e2226103b7b1b104b83488b2b0e5624ef020d929626c5c8fae54f953b388 done
+#11 exporting manifest list sha256:2dfe48ee3366f4e942be68d178e36a9c1b53936c537fff021ba655950406b818 done
+#11 naming to docker.io/library/hb__wiz-scan-pipeline-fix:latest done
+#11 unpacking to docker.io/library/hb__wiz-scan-pipeline-fix:latest done
+#11 DONE 0.0s
+
+#12 resolving provenance for metadata file
+#12 DONE 0.0s
+ Image hb__wiz-scan-pipeline-fix Built 
+ Network wiz-scan-pipeline-fix__dk72jsx_default Creating 
+ Network wiz-scan-pipeline-fix__dk72jsx_default Created 
+ Container wiz-scan-pipeline-fix__dk72jsx-main-1 Creating 
+ Container wiz-scan-pipeline-fix__dk72jsx-main-1 Created 
+ Container wiz-scan-pipeline-fix__dk72jsx-main-1 Starting 
+ Container wiz-scan-pipeline-fix__dk72jsx-main-1 Started 
+ Container wiz-scan-pipeline-fix__dk72jsx-main-1 Waiting 
+container wiz-scan-pipeline-fix__dk72jsx-main-1 exited (1)
+. Stderr: None. 

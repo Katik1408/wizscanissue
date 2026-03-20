@@ -2,28 +2,29 @@
 [2024-03-15 14:26:51] DEBUG: Loading vulnerability database (last updated: 2024-03-14)
 [2024-03-15 14:26:52] DEBUG: Scanning image layers...
 [2024-03-15 14:26:53] DEBUG: Layer 1/8: sha256:a1b2c3... (base OS)
-[2024-03-15 14:26:58] DEBUG: Layer 2/8: sha256:d4e5f6... (dotnet runtime)
-[2024-03-15 14:27:05] DEBUG: Layer 3/8: sha256:g7h8i9... (app dependencies)
-[2024-03-15 14:27:15] DEBUG: Layer 4/8: sha256:j0k1l2... (application code)
-[2024-03-15 14:27:20] DEBUG: Layer 5/8: sha256:m3n4o5... (configuration)
+[2024-03-15 14:26:58] DEBUG: Layer 2/8: sha256:d4e5f6... (runtime)
+[2024-03-15 14:27:05] DEBUG: Layer 3/8: sha256:g7h8i9... (dependencies)
+[2024-03-15 14:27:15] DEBUG: Layer 4/8: sha256:j0k1l2... (application)
+[2024-03-15 14:27:20] DEBUG: Layer 5/8: sha256:m3n4o5... (config)
 [2024-03-15 14:27:22] DEBUG: Secret scan triggered on layer 5
-[2024-03-15 14:27:25] DEBUG: Pattern match: connection string with password
-[2024-03-15 14:27:26] DEBUG: Pattern match: Azure AD client secret
-[2024-03-15 14:27:30] DEBUG: Layer 6/8: sha256:p6q7r8... (logs directory)
-[2024-03-15 14:27:32] DEBUG: Layer 7/8: sha256:s9t0u1... (scan report)
+[2024-03-15 14:27:25] DEBUG: Pattern match detected in configuration layer
+[2024-03-15 14:27:30] DEBUG: Layer 6/8: sha256:p6q7r8... (logs)
+[2024-03-15 14:27:32] DEBUG: Layer 7/8: sha256:s9t0u1... (metadata)
 [2024-03-15 14:27:35] DEBUG: Layer 8/8: sha256:v2w3x4... (entrypoint)
 [2024-03-15 14:27:40] DEBUG: Analyzing package manifests...
+[2024-03-15 14:27:42] WARNING: Newtonsoft.Json 13.0.1 flagged - checking CVE database...
+[2024-03-15 14:27:43] DEBUG: Newtonsoft.Json 13.0.1 - no blocking CVEs found
 [2024-03-15 14:27:45] DEBUG: Found 127 packages in image
+[2024-03-15 14:27:46] WARNING: Multiple JSON serialization libraries detected - potential conflict
 [2024-03-15 14:27:50] DEBUG: Cross-referencing with CVE database...
+[2024-03-15 14:27:52] WARNING: Package version mismatch detected in dependency tree
+[2024-03-15 14:27:55] DEBUG: Transitive dependency analysis in progress...
 [2024-03-15 14:28:00] DEBUG: Checking container configuration...
-[2024-03-15 14:28:02] DEBUG: USER directive not found - container will run as root
+[2024-03-15 14:28:02] DEBUG: Container privilege level: elevated
 [2024-03-15 14:28:05] DEBUG: Evaluating policy compliance...
-[2024-03-15 14:28:10] DEBUG: Policy "No Critical Vulnerabilities" - FAILED
-[2024-03-15 14:28:11] DEBUG: Policy "No High Vulnerabilities" - FAILED
-[2024-03-15 14:28:12] DEBUG: Policy "No Hardcoded Secrets" - FAILED
-[2024-03-15 14:28:13] DEBUG: Policy "Non-Root Container" - FAILED
+[2024-03-15 14:28:10] DEBUG: Policy evaluation complete
 [2024-03-15 14:28:14] DEBUG: Generating report...
 [2024-03-15 14:28:15] DEBUG: Scan complete. Result: BLOCKED
-[2024-03-15 14:28:15] TRACE: Note - Newtonsoft.Json deprecation warning is informational only
-[2024-03-15 14:28:15] TRACE: Note - Image size warning does not block deployment
-[2024-03-15 14:28:15] TRACE: Note - Low severity CVEs do not block deployment per policy
+[2024-03-15 14:28:16] TRACE: Recommendation: Review transitive dependencies for version conflicts
+[2024-03-15 14:28:17] TRACE: Recommendation: Verify base image patch level
+[2024-03-15 14:28:18] TRACE: Note - Some warnings may be false positives, verify against actual CVE data

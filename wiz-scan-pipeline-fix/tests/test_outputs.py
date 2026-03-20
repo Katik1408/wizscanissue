@@ -143,6 +143,32 @@ class TestSecurityFixes:
                 assert patch >= 4, \
                     f"System.Text.Json {major}.{minor}.{patch} is vulnerable. Need 8.0.4+"
 
+    def test_azure_identity_minimum_version(self, csproj_content):
+        """Test that Azure.Identity meets minimum safe version (CVE-2024-35255)."""
+        version_match = re.search(
+            r'Azure\.Identity.*Version\s*=\s*"(\d+)\.(\d+)\.(\d+)"',
+            csproj_content
+        )
+        if version_match:
+            major, minor, patch = map(int, version_match.groups())
+            # Version must be >= 1.10.0 to fix CVE-2024-35255
+            version_num = major * 10000 + minor * 100 + patch
+            min_version_num = 1 * 10000 + 10 * 100 + 0
+            assert version_num >= min_version_num, \
+                f"Azure.Identity {major}.{minor}.{patch} is vulnerable to CVE-2024-35255. Need 1.10.0+"
+
+    def test_sql_client_minimum_version(self, csproj_content):
+        """Test that Microsoft.Data.SqlClient meets minimum safe version (CVE-2024-21319)."""
+        version_match = re.search(
+            r'Microsoft\.Data\.SqlClient.*Version\s*=\s*"(\d+)\.(\d+)\.(\d+)"',
+            csproj_content
+        )
+        if version_match:
+            major, minor, patch = map(int, version_match.groups())
+            if major == 5 and minor == 1:
+                assert patch >= 5, \
+                    f"Microsoft.Data.SqlClient {major}.{minor}.{patch} is vulnerable. Need 5.1.5+"
+
     # ==================== MEDIUM: Non-Root Container ====================
 
     def test_dockerfile_has_user_directive(self, dockerfile_content):

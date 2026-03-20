@@ -11,11 +11,13 @@
 [2024-03-15 10:00:06] INFO: Loading Azure AD configuration...
 [2024-03-15 10:00:06] INFO: Azure AD authentication configured
 [2024-03-15 10:00:07] WARNING: Newtonsoft.Json is using deprecated serialization settings
-[2024-03-15 10:00:07] INFO: Consider migrating to System.Text.Json for better performance
-[2024-03-15 10:00:08] INFO: Registering API endpoints...
-[2024-03-15 10:00:08] INFO: Health check endpoint registered at /health
-[2024-03-15 10:00:09] INFO: Application started successfully on port 80
-[2024-03-15 10:00:09] INFO: Ready to accept requests
+[2024-03-15 10:00:07] ERROR: Newtonsoft.Json TypeNameHandling may cause security issues - INVESTIGATE
+[2024-03-15 10:00:08] INFO: Consider migrating to System.Text.Json for better performance
+[2024-03-15 10:00:08] WARNING: JSON deserialization vulnerability detected in legacy code path
+[2024-03-15 10:00:09] INFO: Registering API endpoints...
+[2024-03-15 10:00:09] INFO: Health check endpoint registered at /health
+[2024-03-15 10:00:10] INFO: Application started successfully on port 80
+[2024-03-15 10:00:10] INFO: Ready to accept requests
 [2024-03-15 10:05:00] INFO: Health check request received
 [2024-03-15 10:05:00] DEBUG: Checking database connectivity...
 [2024-03-15 10:05:01] DEBUG: Checking Redis connectivity...
@@ -28,5 +30,7 @@
 [2024-03-15 10:15:01] INFO: Triggering garbage collection...
 [2024-03-15 10:15:02] INFO: Memory usage reduced to 45%
 [2024-03-15 10:20:00] ERROR: Permission denied writing to /var/log/app.log
-[2024-03-15 10:20:00] WARNING: Falling back to stdout logging
+[2024-03-15 10:20:00] WARNING: Falling back to stdout logging - container may be running with restricted permissions
 [2024-03-15 10:20:01] INFO: Logging configuration updated
+[2024-03-15 10:25:00] WARNING: SSL certificate validation using older TLS protocol
+[2024-03-15 10:25:01] DEBUG: OpenSSL version check - library loaded successfully

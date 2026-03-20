@@ -1,0 +1,7 @@
+Trial wiz-scan-pipeline-fix__iCHSghR failed: Docker compose command failed for environment wiz-scan-pipeline-fix. Command: docker compose -p wiz-scan-pipeline-fix__ichsghr --project-directory /Users/admin/Downloads/bespokehometest_wiz/wizscanissue/wiz-scan-pipeline-fix/environment -f /Users/admin/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/admin/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml build. Return code: 1. Stdout:  Image hb__wiz-scan-pipeline-fix Building 
+Cannot connect to the Docker daemon at unix:///Users/admin/.docker/run/docker.sock. Is the docker daemon running?
+
+. Stderr: None. 
+Docker compose down failed: Docker compose command failed for environment wiz-scan-pipeline-fix. Command: docker compose -p wiz-scan-pipeline-fix__ichsghr --project-directory /Users/admin/Downloads/bespokehometest_wiz/wizscanissue/wiz-scan-pipeline-fix/environment -f /Users/admin/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-base.yaml -f /Users/admin/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/environments/docker/docker-compose-build.yaml down --rmi all --volumes --remove-orphans. Return code: 1. Stdout: Cannot connect to the Docker daemon at unix:///Users/admin/.docker/run/docker.sock. Is the docker daemon running?
+. Stderr: None. 
+Not retrying trial because the maximum number of retries has been reached

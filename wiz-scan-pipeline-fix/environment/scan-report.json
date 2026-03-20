@@ -4,9 +4,9 @@
   "imageName": "securewebapp:latest",
   "scanStatus": "FAILED",
   "summary": {
-    "critical": 1,
-    "high": 3,
-    "medium": 4,
+    "critical": 2,
+    "high": 4,
+    "medium": 5,
     "low": 39,
     "informational": 12
   },
@@ -16,139 +16,163 @@
       "id": "WIZ-CVE-2024-0001",
       "severity": "CRITICAL",
       "category": "Vulnerability",
-      "title": "Critical vulnerability in base image OpenSSL",
-      "description": "The base image mcr.microsoft.com/dotnet/aspnet:6.0 contains OpenSSL 1.1.1k which is vulnerable to CVE-2024-0727 (CVSS 9.8). This allows remote attackers to execute arbitrary code via crafted certificate chains.",
-      "affectedComponent": "openssl 1.1.1k",
-      "fixedIn": "openssl 3.0.13 or use updated base image",
-      "remediation": "Update to a patched base image version such as mcr.microsoft.com/dotnet/aspnet:6.0.28-jammy or migrate to .NET 8.0",
-      "path": "/usr/lib/x86_64-linux-gnu/libssl.so.1.1"
+      "title": "Remote code execution vulnerability in SSL/TLS library",
+      "description": "A critical vulnerability exists in the cryptographic library that could allow remote code execution via malformed certificate chains. CVSS Score: 9.8",
+      "affectedComponent": "libssl",
+      "cveId": "CVE-2024-0727",
+      "path": "/usr/lib/x86_64-linux-gnu/libssl.so"
+    },
+    {
+      "id": "WIZ-CVE-2024-0012",
+      "severity": "CRITICAL",
+      "category": "Vulnerability",
+      "title": "Memory corruption in JSON deserialization",
+      "description": "A heap buffer overflow vulnerability in the JSON parsing library allows attackers to execute arbitrary code when processing untrusted input. This affects applications that deserialize user-controlled JSON data.",
+      "affectedComponent": "json-serializer",
+      "cveId": "CVE-2024-30105",
+      "path": "/app/deps"
     },
     {
       "id": "WIZ-SEC-2024-0002",
       "severity": "HIGH",
       "category": "Secret",
-      "title": "Database connection string with embedded credentials",
-      "description": "Hardcoded database credentials detected in application configuration. The connection string contains plaintext username and password which could be extracted from the container image.",
-      "affectedComponent": "appsettings.json",
-      "secretType": "Database Credential",
-      "secretPattern": "Password=***",
-      "remediation": "Remove hardcoded credentials from configuration files. Use environment variables, Azure Key Vault, or other secret management solutions to inject credentials at runtime.",
-      "path": "/app/appsettings.json:8"
+      "title": "Embedded credentials detected in container layer",
+      "description": "Static analysis detected potential credentials embedded in the container image. Secrets in container images can be extracted by anyone with access to the image.",
+      "affectedComponent": "configuration-layer",
+      "secretType": "Credential",
+      "path": "/app/"
     },
     {
       "id": "WIZ-SEC-2024-0003",
       "severity": "HIGH",
       "category": "Secret",
-      "title": "Azure AD client secret exposed",
-      "description": "Azure Active Directory client secret found in configuration file. This credential could allow unauthorized access to Azure resources.",
-      "affectedComponent": "appsettings.json",
-      "secretType": "Azure AD Credential",
-      "remediation": "Remove client secret from configuration. Use Managed Identity or inject via environment variable 'AzureAd__ClientSecret'.",
-      "path": "/app/appsettings.json:13"
+      "title": "Cloud provider authentication material exposed",
+      "description": "Authentication credentials for cloud services were detected. These could be used to gain unauthorized access to cloud resources.",
+      "affectedComponent": "configuration-layer",
+      "secretType": "Cloud Credential",
+      "path": "/app/"
     },
     {
       "id": "WIZ-CVE-2024-0004",
       "severity": "HIGH",
       "category": "Vulnerability",
-      "title": "Denial of Service vulnerability in System.Text.Json",
-      "description": "System.Text.Json version 6.0.0 is vulnerable to CVE-2024-30105 which allows attackers to cause denial of service via deeply nested JSON objects.",
-      "affectedComponent": "System.Text.Json 6.0.0",
-      "fixedIn": "System.Text.Json 6.0.10 or 8.0.4",
-      "remediation": "Update System.Text.Json to version 6.0.10 or higher. Note: Ensure compatibility with Azure.Identity which has a transitive dependency on System.Text.Json.",
-      "path": "/app/SecureWebApp.deps.json"
+      "title": "Denial of service via resource exhaustion",
+      "description": "A vulnerability in input processing allows attackers to cause excessive memory consumption leading to denial of service.",
+      "affectedComponent": "serialization-library",
+      "cveId": "CVE-2024-21319",
+      "path": "/app/deps"
+    },
+    {
+      "id": "WIZ-CVE-2024-0013",
+      "severity": "HIGH",
+      "category": "Vulnerability",
+      "title": "Authentication bypass in identity library",
+      "description": "The Azure authentication library contains a vulnerability that could allow token validation bypass under certain conditions. Affects versions prior to 1.10.0.",
+      "affectedComponent": "identity-library",
+      "cveId": "CVE-2024-35255",
+      "path": "/app/deps"
     },
     {
       "id": "WIZ-CFG-2024-0005",
       "severity": "MEDIUM",
       "category": "Configuration",
-      "title": "Container running as root user",
-      "description": "The container is configured to run as the root user (UID 0). This violates the principle of least privilege and increases the attack surface.",
-      "affectedComponent": "Dockerfile",
-      "remediation": "Add 'USER app' directive to run as non-root user. The .NET base images include a pre-created 'app' user for this purpose.",
+      "title": "Privileged container execution",
+      "description": "The container is configured to run with elevated privileges. This increases the attack surface and potential impact of container escapes.",
+      "affectedComponent": "container-config",
       "path": "Dockerfile"
     },
     {
       "id": "WIZ-CFG-2024-0006",
       "severity": "MEDIUM",
       "category": "Configuration",
-      "title": "Image size exceeds recommended limit",
-      "description": "The final image size is 847MB which exceeds the recommended limit of 500MB. Large images increase attack surface and deployment time.",
-      "affectedComponent": "Docker Image",
-      "remediation": "Consider using Alpine-based images or multi-stage builds to reduce image size.",
+      "title": "Large attack surface",
+      "description": "The container image contains unnecessary components that increase the attack surface.",
+      "affectedComponent": "image-layers",
       "path": "Dockerfile"
     },
     {
       "id": "WIZ-SEC-2024-0007",
       "severity": "MEDIUM",
       "category": "Secret",
-      "title": "Redis password in configuration",
-      "description": "Redis connection string contains embedded password.",
-      "affectedComponent": "appsettings.json",
-      "secretType": "Redis Credential",
-      "remediation": "Inject Redis credentials via environment variable.",
-      "path": "/app/appsettings.json:16"
+      "title": "Cache service credentials exposed",
+      "description": "Credentials for caching infrastructure detected in image.",
+      "affectedComponent": "configuration-layer",
+      "secretType": "Service Credential",
+      "path": "/app/"
     },
     {
       "id": "WIZ-SEC-2024-0008",
       "severity": "MEDIUM",
       "category": "Secret",
-      "title": "Third-party API key detected",
-      "description": "API key for external service found in configuration.",
-      "affectedComponent": "appsettings.json",
+      "title": "External API authentication key",
+      "description": "API key for third-party service found in container.",
+      "affectedComponent": "configuration-layer",
       "secretType": "API Key",
-      "remediation": "Use secret management solution for API keys.",
-      "path": "/app/appsettings.json:19"
+      "path": "/app/"
+    },
+    {
+      "id": "WIZ-CFG-2024-0014",
+      "severity": "MEDIUM",
+      "category": "Configuration",
+      "title": "Insecure file permissions on configuration",
+      "description": "Configuration files have overly permissive access rights.",
+      "affectedComponent": "filesystem",
+      "path": "/app/config"
     },
     {
       "id": "WIZ-DEP-2024-0009",
       "severity": "LOW",
       "category": "Deprecated",
-      "title": "Newtonsoft.Json deprecated API usage",
-      "description": "The application uses Newtonsoft.Json which has deprecated serialization APIs. Consider migrating to System.Text.Json.",
-      "affectedComponent": "Newtonsoft.Json 13.0.1",
-      "remediation": "This is informational only. Newtonsoft.Json 13.0.1 has no known security vulnerabilities.",
-      "path": "/app/SecureWebApp.deps.json"
+      "title": "Deprecated serialization library in use",
+      "description": "The application uses a JSON library with deprecated APIs. While not a security vulnerability, migration is recommended.",
+      "affectedComponent": "Newtonsoft.Json",
+      "path": "/app/deps"
     },
     {
       "id": "WIZ-CVE-2024-0010",
       "severity": "LOW",
       "category": "Vulnerability",
-      "title": "Low severity vulnerability in zlib",
-      "description": "zlib 1.2.11 has a low severity buffer overflow in inflate (CVE-2022-37434).",
-      "affectedComponent": "zlib 1.2.11",
-      "fixedIn": "zlib 1.2.13",
-      "path": "/usr/lib/x86_64-linux-gnu/libz.so.1.2.11"
+      "title": "Buffer overflow in compression library",
+      "description": "Low severity buffer overflow in decompression routine.",
+      "affectedComponent": "zlib",
+      "cveId": "CVE-2022-37434",
+      "path": "/usr/lib/"
     },
     {
       "id": "WIZ-CVE-2024-0011",
       "severity": "LOW",
-      "category": "Vulnerability", 
-      "title": "GNU C Library vulnerability",
-      "description": "glibc contains multiple low-severity vulnerabilities.",
-      "affectedComponent": "glibc 2.31",
-      "path": "/lib/x86_64-linux-gnu/libc.so.6"
+      "category": "Vulnerability",
+      "title": "C library vulnerabilities",
+      "description": "Multiple low-severity issues in standard C library.",
+      "affectedComponent": "glibc",
+      "path": "/lib/"
     }
   ],
   "policyViolations": [
     {
       "policy": "No Critical Vulnerabilities",
       "status": "VIOLATED",
-      "message": "1 critical vulnerability found"
+      "message": "Critical vulnerabilities detected in image"
     },
     {
-      "policy": "No High Vulnerabilities", 
+      "policy": "No High Vulnerabilities",
       "status": "VIOLATED",
-      "message": "3 high severity findings found"
+      "message": "High severity findings require remediation"
     },
     {
       "policy": "No Hardcoded Secrets",
-      "status": "VIOLATED", 
-      "message": "4 secrets detected in image"
+      "status": "VIOLATED",
+      "message": "Secrets detected in container image"
     },
     {
-      "policy": "Non-Root Container",
+      "policy": "Least Privilege",
       "status": "VIOLATED",
-      "message": "Container runs as root"
+      "message": "Container privilege level exceeds policy"
     }
+  ],
+  "notes": [
+    "LOW severity findings do not block deployment per current policy",
+    "MEDIUM findings are flagged for review but do not block",
+    "Some deprecated library warnings are informational only"
   ]
 }
