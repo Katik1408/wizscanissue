@@ -1,0 +1,29 @@
+{
+    "id": "c1e24525-2db7-40eb-becd-f084479d740b",
+    "started_at": "2026-03-20T18:13:48.440640",
+    "finished_at": "2026-03-20T18:13:54.641403",
+    "n_total_trials": 1,
+    "stats": {
+        "n_trials": 1,
+        "n_errors": 0,
+        "evals": {
+            "oracle__adhoc": {
+                "n_trials": 1,
+                "n_errors": 0,
+                "metrics": [
+                    {
+                        "mean": 1.0
+                    }
+                ],
+                "reward_stats": {
+                    "reward": {
+                        "1.0": [
+                            "wiz-scan-pipeline-fix__7eAFFvj"
+                        ]
+                    }
+                },
+                "exception_stats": {}
+            }
+        }
+    }
+}
